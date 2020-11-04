@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace TechJobsOO
 {
     public class Job
@@ -37,6 +39,54 @@ namespace TechJobsOO
         public override int GetHashCode()
         {
             return HashCode.Combine(Id);
+        }
+
+        public override string ToString()
+        {
+            if(Name == null)
+            {
+                return "OOPS! This job does not seem to exist.";
+            }
+
+            string nameString = Name;
+            string employerNameString = EmployerName.Value;
+            string employerLocationString = EmployerLocation.Value;
+            string jobTypeString = JobType.Value;
+            string jobCoreCompetencyString = JobCoreCompetency.Value;
+
+            int emptyFieldCount = 0;
+
+            List<string> stringList = new List<string>
+            {
+                nameString,
+                employerNameString,
+                employerLocationString,
+                jobTypeString,
+                jobCoreCompetencyString
+            };
+
+            for (int i = 0; i < stringList.Count; i++)
+            {
+                if (stringList[i] == "" || stringList[i] == null)
+                {
+                    emptyFieldCount++;
+                    stringList[i] = "Data not available";
+                }
+            };
+
+            if (emptyFieldCount >= stringList.Count)
+            {
+                return "OOPS! This job does not seem to exist.";
+            }
+
+            return "\n" +
+                "ID: " + Id + "\n" +
+                "Name: " + stringList[0] + "\n" +
+                "Employer: " + stringList[1] + "\n" +
+                "Location: " + stringList[2] + "\n" +
+                "Position Type: " + stringList[3] + "\n" +
+                "Core Competency: " + stringList[4] + "\n" +
+                "\n";
         }
     }
 }
