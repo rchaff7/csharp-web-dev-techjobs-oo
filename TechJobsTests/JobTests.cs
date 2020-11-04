@@ -111,10 +111,14 @@ namespace TechJobsTests
         {
             Console.WriteLine(ACME.Id + " " + Desert.Id + " " + QualityControl.Id + " " + Persistence.Id);
             Console.WriteLine(Desert.Value);
-            Assert.IsFalse(ACME.Equals(Desert));
+
+            Assert.IsFalse(ACME.Equals(Desert)); // <---
+
             Assert.IsTrue(ACME.Equals(ACME));
             Assert.IsTrue(Desert is JobField && ACME.Id == Desert.Id);
             Assert.IsFalse(Desert is Employer && ACME.Id == Desert.Id);
+
+            Assert.IsTrue(Desert.Equals(ACME)); // <---
         }
     }
 }

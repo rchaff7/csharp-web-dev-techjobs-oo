@@ -11,5 +11,11 @@ namespace TechJobsOO
             Id = nextId;
             nextId++;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is JobField field &&
+                   Id == field.Id;
+        }
     }
 }
