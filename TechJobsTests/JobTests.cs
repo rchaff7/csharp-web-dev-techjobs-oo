@@ -106,7 +106,37 @@ namespace TechJobsTests
             );
         }
 
-
-
+        [TestMethod]
+        public void TestInheritedEquals()
+        {
+            Console.WriteLine(ACME.Id + " " + Desert.Id + " " + QualityControl.Id + " " + Persistence.Id);
+            Console.WriteLine(Desert.Value);
+            Assert.IsFalse(ACME.Equals(Desert));
+            Assert.IsTrue(ACME.Equals(ACME));
+            Assert.IsTrue(Desert is JobField && ACME.Id == Desert.Id);
+            Assert.IsFalse(Desert is Employer && ACME.Id == Desert.Id);
+        }
     }
 }
+
+/* how does the Equals method of parent class get inherited if you dont override it within the child??
+ * does the child class get compared as JobField class or as its own class??
+ * (it seems the different child classes are not equal even if they have the same ID
+ * when using the Parent Equals method. Does inheriting the method change the logic
+ * to compare 'obj is *currentclass*' rather than 'obj is JobField'??)
+ * 
+ * all child classes share the nextId field from parent instead of having their own counter.
+ * this also means they can share the Equals method of the base class 
+ * since none of them will ever have the same id as another.
+ * 
+ * does the Parent nextId field get used by all the children because its static??
+ * 
+ * is it intended for the Objects to not have sequential ID numbers within their own class??
+ * 
+ * Should Job class also not inherit from JobField since it also
+ * uses some of the same fields and properties???
+ * 
+ * What is the point of all these child classes that literally dont do anything
+ * more than the parent class? everything still works.
+ * Is it purely for organization during creation of a Job object with the constructor?
+*/

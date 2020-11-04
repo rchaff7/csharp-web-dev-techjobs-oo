@@ -3,15 +3,13 @@ namespace TechJobsOO
 {
     public class Location : JobField
     {
+        public new int Id { get; }
+        private static int nextId = 1;
+
         public Location(string value) : base(value)
         {
-            Value = value;
-        }
-
-        public override bool Equals(object obj)
-        {
-            return obj is Location location &&
-                   Id == location.Id;
+            Id = nextId;
+            nextId++;
         }
     }
 }
