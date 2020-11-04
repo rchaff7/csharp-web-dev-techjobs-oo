@@ -43,7 +43,11 @@ namespace TechJobsOO
 
         public override string ToString()
         {
-            if(Name == null)
+            if(Name == null && 
+                EmployerName == null && 
+                EmployerLocation == null &&
+                JobType == null && 
+                JobCoreCompetency == null)
             {
                 return "OOPS! This job does not seem to exist.";
             }
@@ -53,8 +57,6 @@ namespace TechJobsOO
             string employerLocationString = EmployerLocation.Value;
             string jobTypeString = JobType.Value;
             string jobCoreCompetencyString = JobCoreCompetency.Value;
-
-            int emptyFieldCount = 0;
 
             List<string> stringList = new List<string>
             {
@@ -69,15 +71,9 @@ namespace TechJobsOO
             {
                 if (stringList[i] == "" || stringList[i] == null)
                 {
-                    emptyFieldCount++;
                     stringList[i] = "Data not available";
                 }
             };
-
-            if (emptyFieldCount >= stringList.Count)
-            {
-                return "OOPS! This job does not seem to exist.";
-            }
 
             return "\n" +
                 "ID: " + Id + "\n" +

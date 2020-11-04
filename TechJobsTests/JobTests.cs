@@ -64,7 +64,7 @@ namespace TechJobsTests
         }
 
         [TestMethod]
-        public void TestJobToStringMethodFieldData()
+        public void TestJobToStringMethodFieldDataOnOwnLines()
         {
             string[] splitStr = output3.Split('\n');
             Console.WriteLine(splitStr[1]);
@@ -97,7 +97,7 @@ namespace TechJobsTests
         }
 
         [TestMethod]
-        public void TestJobToStringMethodForOnlyIDExists()
+        public void TestJobToStringMethodForOnlyIDHasValue()
         {
             Console.Write(output2);
 
@@ -105,6 +105,8 @@ namespace TechJobsTests
                 output2 == "OOPS! This job does not seem to exist."
             );
         }
+
+
 
     }
 }
